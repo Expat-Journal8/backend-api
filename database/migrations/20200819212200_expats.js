@@ -44,7 +44,7 @@ exports.up = function(knex) {
             tbl.increments();
             tbl.string('photoLink', 255)
                 .notNullable();
-            tbl.text('photDesc')
+            tbl.text('photoDesc')
                 .notNullable();
             tbl.date('photoDate');
             tbl.integer('stories_id')
