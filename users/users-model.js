@@ -29,10 +29,17 @@ function findById(id) {
         .where({ id });
 };
 
+// function findStories(id) {
+//     return db('stories as s')
+//         .join('photos as p', 'p.id','p.stories_id')
+//         .select('s.id','s.storyName', 'p.photoLink', 's.user_id', 'p.stories_id')
+//         .where({stories_id: id})
+// };
+
 function findStories(id) {
-    return db('stories as s')
-        .join('photos as p', 'p.id','p.stories_id')
-        .select('s.id','s.storyName', 'p.photoLink')
+    return db('stories')
+        .join('photos', 'photos.id', 'photos.stories_id' )
+        .select('stories.id', 'stories.storyName', 'photos.photoLink', 'stories.user_id', 'photos.stories_id')
         .where({stories_id: id})
 };
 
