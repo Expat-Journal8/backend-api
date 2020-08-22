@@ -1,6 +1,5 @@
 const express = require('express');
 const users = require('./users-model.js');
-const { count } = require('../database/db-config.js');
 const router = express.Router();
 
 router.get('/', (req, res) => {
