@@ -21,7 +21,7 @@ module.exports = {
     }
   },
 
-  staging: {
+  testing: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
     pool: {
