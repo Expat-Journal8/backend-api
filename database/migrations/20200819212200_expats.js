@@ -42,8 +42,8 @@ exports.up = function(knex) {
         })
         .createTable('photos', tbl => {
             tbl.increments();
-            tbl.string('photoLink', 255)
-                .notNullable();
+            tbl.string('photoLink', 255);
+                // .notNullable();
             tbl.text('photoDesc')
                 .notNullable();
             tbl.date('photoDate');
