@@ -29,7 +29,8 @@ exports.up = function(knex) {
                 .notNullable();
             tbl.string('storyCountry', 128)
                 .notNullable();
-            tbl.date('storyDate')
+            tbl.timestamp('storyDate')
+                .defaultTo(knex.fn.now())
                 .notNullable();
             tbl.text('storyDesc')
                 .notNullable();
@@ -46,7 +47,9 @@ exports.up = function(knex) {
                 // .notNullable();
             tbl.text('photoDesc')
                 .notNullable();
-            tbl.date('photoDate');
+            tbl.timestamp('photoDate')
+                .defaultTo(knex.fn.now())
+                .notNullable();
             tbl.integer('stories_id')
                 .unsigned()
                 .notNullable()

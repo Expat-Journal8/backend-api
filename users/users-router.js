@@ -53,9 +53,9 @@ router.put('/:id', (req, res) => {
     const changes = req.body;
 
     users.update(changes, id)
-        .then(count => {
-            if (count) {
-                res.json({update: count});
+        .then(user => {
+            if (user) {
+                res.json({user});
             } else {
                 res.status(400).json({
                     message: 'Could not find user with given ID'

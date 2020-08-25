@@ -18,7 +18,7 @@ router.post('/register', (req,res) => {
         Users.add(credentials)
             .then(user => {
                 res.status(200).json({
-                    data:user
+                    user
                 });
             })
             .catch(err => {
