@@ -38,9 +38,9 @@ function findById(id) {
 
 function findStories(id) {
     return db('stories')
-        .join('photos', 'photos.id', 'photos.stories_id' )
-        .select('stories.id', 'stories.storyName', 'photos.photoLink', 'stories.user_id', 'photos.stories_id')
-        .where({stories_id: id})
+        // .join('photos', 'photos.id', 'photos.stories_id' )
+        // .select('stories.id', 'stories.storyName', 'photos.photoLink', 'stories.user_id', 'photos.stories_id')
+        .where({user_id: id})
 };
 
 function update(changes, id) {
