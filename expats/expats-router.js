@@ -15,17 +15,6 @@ router.get('/', (req, res) => {
         });
 });
 
-// router.get('/:id', (req, res) =>{
-//     const { id } = req.params; 
-
-//     stories.findStoriesById(id).then(story =>{
-//         res.status(200).json(story)
-//     })
-//     .catch(err => {
-//         res.status(500).json({message: 'Failed To Get Story With That ID'})
-//     })
-// })
-
 router.post('/:id', (req,res) => {
     const storyData = req.body;
     
@@ -80,12 +69,14 @@ router.put('/:id', (req, res) => {
             });
         });
 });
+
 router.get('/:id', (req, res) => {
     const { id } = req.params;
 
     stories.findStories(id)
         .then(stories => {
-            res.json(stories);
+            const story = stories[0];
+            res.json(story);
         })
         .catch(err => {
             res.status(500).json({
