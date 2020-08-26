@@ -50,8 +50,8 @@ Use Base URL:
 | GET    | /api/users/:id/stories | returns posts created by user specified by :id |
 | PUT    | /api/users/:id         | updates user specified by :id                  |
 | DELETE | /api/users/:id         | deletes user specified by :id                  |
-| GET    | /api/stories             | returns array of stories                         |
-| GET    | /api/stories/:id         | returns stories specified by :id                  |
+| GET    | /api/stories           | returns array of stories                       |
+| GET    | /api/stories/:id       | returns stories specified by :id               |
 | PUT    | /api/posts/:id         | updates post specified by :id                  |
 | DELETE | /api/posts/:id         | deletes post specified by :id                  |
 
@@ -77,9 +77,10 @@ POST /api/auth/register
 ```js
 [
     {
-        "user":[
-            3
-        ]
+        "id": 4,
+        "username": "newb_user",
+        "password": "$2a$08$Sp/WntMm7eAZnDn3tp40tOAp77T8CTMUel8bqZGD3CoJcuSrH.NZ6",
+        "email": "Jane@gmail.com"
     }
 ]
 ```

@@ -1,6 +1,7 @@
 const express = require('express');
 const users = require('./users-model.js');
 const router = express.Router();
+const stories = require('../expats/expats-model.js')
 
 // users
 router.get('/', (req, res) => {
@@ -83,6 +84,24 @@ router.get('/:id/stories', (req, res) => {
             });
         });
 });
+// router.get('/:id/stories', (req, res) => {
+//     users.findById(req.params.id)
+//     .then(user =>{
+//         if(user){
+//             stories.findStoriesById({user_id: user.id}).then(stories =>{
+//                 res.status(200).json(stories)
+//             })
+//             .catch(err =>{
+//                 res.status(401).json({message: `Failed To Find stories For: ${user.username}`})
+//             })
+//         } else{
+//             res.status(401).json({message: `Failed To Find User With ID: ${req.params.id} `})
+//         }
+//     })
+//     .catch(err => {
+//         res.status(500).json({message: 'Failed To Get Users stories'})
+//     })
+// })
 
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
