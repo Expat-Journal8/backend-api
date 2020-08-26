@@ -2,6 +2,7 @@ const express = require('express');
 const users = require('./users-model.js');
 const router = express.Router();
 
+// users
 router.get('/', (req, res) => {
     users.find()
         .then(users => {
@@ -82,5 +83,26 @@ router.get('/:id/stories', (req, res) => {
             });
         });
 });
+
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+
+    users.remove(id)
+        .then(deleted => {
+            if(deleted) {
+                res.json({ removed: deleted})
+            } else {
+                res.status(404).json({
+                    message: 'Could not find user with that ID'
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: 'Failed to delete user'
+            });
+        });
+});
+
 
 module.exports = router;

@@ -49,11 +49,11 @@ Use Base URL:
 | GET    | /api/users/:id         | returns users specified by :id                 |
 | GET    | /api/users/:id/stories | returns posts created by user specified by :id |
 | PUT    | /api/users/:id         | updates user specified by :id                  |
-<!-- | DELETE | /api/users/:id         | deletes user specified by :id                  | -->
-<!-- | GET    | /api/posts             | returns array of posts                         |
-| GET    | /api/posts/:id         | returns post specified by :id                  |
+| DELETE | /api/users/:id         | deletes user specified by :id                  |
+| GET    | /api/stories             | returns array of stories                         |
+| GET    | /api/stories/:id         | returns stories specified by :id                  |
 | PUT    | /api/posts/:id         | updates post specified by :id                  |
-| DELETE | /api/posts/:id         | deletes post specified by :id                  | -->
+| DELETE | /api/posts/:id         | deletes post specified by :id                  |
 
 
 ## Register Endpoint
@@ -252,7 +252,7 @@ Only need to add field that you want to update
 }
 ```
 
-<!-- ### DELETE User by ID
+### DELETE User by ID
 ```js
 DELETE /api/users/:id
 ```
@@ -291,27 +291,30 @@ GET /api/posts
 [
     {
         "id": 1,
-        "title": "My First Post",
-        "body": "This is one of my very first trips shared on Capture!",
-        "img_url": "https://images.pexels.com/photos/3375997/pexels-photo-3375997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        "storyName": "Chinatown",
+        "storyCity": "Bangkok",
+        "storyCountry": "Thailand",
+        "storyDate": "2020-08-25 05:38:15",
+        "storyDesc": "Out on a nightly excursion looking for something to eat",
+        "user_id": 1
     },
     {
         "id": 2,
-        "title": "My Second Post",
-        "body": "This is one of my very first trips shared on Capture!",
-        "img_url": "https://images.pexels.com/photos/3375903/pexels-photo-3375903.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        "storyName": "Sanctuary of Truth",
+        "storyCity": "Pattaya City",
+        "storyCountry": "Thailand",
+        "storyDate": "2020-08-25 05:38:15",
+        "storyDesc": "A daytime excursion visiting some local places.",
+        "user_id": 2
     },
     {
         "id": 3,
-        "title": "My Third Post",
-        "body": "This is one of my very first trips shared on Capture!",
-        "img_url": "https://images.pexels.com/photos/3699259/pexels-photo-3699259.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-    },
-    {
-        "id": 4,
-        "title": "My Fourth Post",
-        "body": "This is one of my very first trips shared on Capture!",
-        "img_url": "https://images.pexels.com/photos/3699259/pexels-photo-3699259.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+        "storyName": "Beach in Pattaya",
+        "storyCity": "Pattaya City",
+        "storyCountry": "Thailand",
+        "storyDate": "2020-08-25 05:38:15",
+        "storyDesc": "Taking a must needed rest after a weekend of fun in Pattaya",
+        "user_id": 3
     }
 ]
 ```
@@ -331,28 +334,29 @@ GET /api/posts/:id
 ### Expected Response: User that matches ID
 ```js
 {
-    "post": {
-        "id": 1,
-        "user_id": 1,
-        "title": "My First Post",
-        "body": "This is one of my very first trips shared on Capture!",
-        "img_url": "https://images.pexels.com/photos/3375997/pexels-photo-3375997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-        "created_date": "2020-03-03T17:18:58.010Z"
-    }
+    "id": 1,
+    "storyName": "Chinatown",
+    "storyCity": "Bangkok",
+    "storyCountry": "Thailand",
+    "storyDate": "2020-08-25 05:38:15",
+    "storyDesc": "Out on a nightly excursion looking for something to eat",
+    "user_id": 1
 }
 ```
 ### UPDATE User by ID
 ```js
-PUT /api/posts/:id
+PUT /api/stories/:id
 ```
 ### Expected Body: 
 ```js
 
-{
-    "title": "My Second Post Updated", 
-    "body": "This is one of my very first trips shared on Capture!",
-    "img_url": "https://images.pexels.com/photos/3375997/pexels-photo-3375997.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-}
+    {
+        "storyName": "test", 
+        "storyCity": "test", 
+        "storyCountry": "test", 
+        "storyDesc": "test", 
+        "user_id": 1
+    }
 
 ```
 ### Expected Header: Authorization Token
@@ -367,14 +371,13 @@ PUT /api/posts/:id
 
 ```js
 {
-    "success": "updated",
-    "id": 1
+    UPDATE!!!
 }
 ```
 
 ### DELETE User by ID
 ```js
-DELETE /api/posts/:id
+DELETE /api/stories/:id
 ```
 ### Expected Header: Authorization Token
 ```js
@@ -388,11 +391,10 @@ DELETE /api/posts/:id
 
 ```js
 {
-    "success": "deleted",
-    "id": 1
+    "removed": 1
 }
 ```
- -->
+
 
 # Product Vision Document :tada:
 

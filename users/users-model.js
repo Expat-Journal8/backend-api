@@ -6,13 +6,15 @@ module.exports = {
     findBy,
     findById,
     findStories,
-    update
+    update,
+    addStory,
+    remove,
 }
 
 function add(user) {
     return db('users')
         .insert(user)
-        .returning(['id', 'username']);
+        .returning(['id', 'username', 'password', 'email']);
 };
 
 function find() {
@@ -37,11 +39,11 @@ function findById(id) {
 //         .where({stories_id: id})
 // };
 
-function findStories(id) {
+function findStories(filter) {
     return db('stories')
         // .join('photos', 'photos.id', 'photos.stories_id' )
         // .select('stories.id', 'stories.storyName', 'photos.photoLink', 'stories.user_id', 'photos.stories_id')
-        .where({user_id: id})
+        .where(filter)
 };
 
 function update(changes, id) {
@@ -49,3 +51,16 @@ function update(changes, id) {
         .where({ id })
         .update(changes);
 };
+
+function addStory(story) {
+    return db('stories')
+        .insert(story)
+        .returning(story);
+};
+
+function remove(id) {
+    return db('users')
+        .where({ id })
+        .del();
+};
+
