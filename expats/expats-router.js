@@ -15,12 +15,12 @@ router.get('/', (req, res) => {
         });
 });
 
-router.post('/:id', (req,res) => {
+router.post('/', (req,res) => {
     const storyData = req.body;
     
     stories.add(storyData)
-        .then(ids => {
-            res.status(201).json({created:ids[0]})
+        .then(story => {
+            res.status(201).json(story)
         })
         .catch(err => {
             res.status(500).json({

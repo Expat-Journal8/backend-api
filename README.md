@@ -22,14 +22,14 @@ yarn or npm run server
 - **[Installation](#installing)**<br>
 - **[Back End Developer](#backend-developers)**<br>
 - **[API Endpoints](#api-endpoints)**<br>
-- **[Product Vision Document](#exPat-Journal)**<br>
+<!-- - **[Product Vision Document](#exPat-Journal)**<br>
 - **[Proposal](#proposal)**<br>
 - **[UX Design](#ux-design)**<br>
 - **[Frameworks and Libraries Used](#frameworks-and-libraries)**<br>
 - **[Target Audience](#target-audience)**<br>
 - **[Research](#research)**<br>
 - **[Prototype Key Features](#prototype-key-features)**<br>
-- **[Credits](#credits)**<br>
+- **[Credits](#credits)**<br> -->
 
 ## <a name='overview'></a>Overview
 - Sharing Stories & Images of users travels
@@ -47,13 +47,14 @@ Use Base URL:
 | POST   | /api/auth/login        | logins into user account                       |
 | GET    | /api/users             | returns array of users                         |
 | GET    | /api/users/:id         | returns users specified by :id                 |
-| GET    | /api/users/:id/stories | returns posts created by user specified by :id |
+| GET    | /api/users/:id/stories | returns stories created by user specified by :id |
 | PUT    | /api/users/:id         | updates user specified by :id                  |
 | DELETE | /api/users/:id         | deletes user specified by :id                  |
 | GET    | /api/stories           | returns array of stories                       |
 | GET    | /api/stories/:id       | returns stories specified by :id               |
-| PUT    | /api/posts/:id         | updates post specified by :id                  |
-| DELETE | /api/posts/:id         | deletes post specified by :id                  |
+| POST   | /api/stories           | creates & returns new story                    |
+| PUT    | /api/stories/:id       | updates stories specified by :id                  |
+| DELETE | /api/stories/:id       | deletes stories specified by :id                  |
 
 
 ## Register Endpoint
@@ -99,8 +100,18 @@ POST /api/auth/login
 ### Expected Response
 ```js
 {
-    "message": "Welcome to your journal test_user!",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo5LCJ1c2VybmFtZSI6Im5ld191c2UxciIsImlhdCI6MTU5ODMzMDkzOCwiZXhwIjoxNTk4MzM4MTM4fQ.CXtt4QEyrLHfNAWYdNN59fxysdyDAQS1Ujwq5-gCzcc"
+    "message": "Welcome to your journal:",
+    "user": {
+        "id": 12,
+        "username": "new_user121212",
+        "password": "$2a$08$9MDp4ngPo2WQreDm.Edve.n3DlkHq06wKWXPpOxp/LukM0y6vF402",
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "gender": "female",
+        "age": 18,
+        "email": "JaneDoe1133@gmail.com"
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMiwidXNlcm5hbWUiOiJuZXdfdXNlcjEyMTIxMiIsImlhdCI6MTU5ODQyMDg0NywiZXhwIjoxNTk4NDI4MDQ3fQ.YyR_rrRxYaDVTt3FPM155hPwbUAEFhyaDSOWqVOD8kM"
 }
 ```
 
@@ -109,20 +120,12 @@ POST /api/auth/login
 ```js
 GET /api/users
 ```
-### Expected Header: Authorization Token
-```js
-
-{
-    "Authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo5LCJ1c2VybmFtZSI6Im5ld191c2UxciIsImlhdCI6MTU5ODMzMDkzOCwiZXhwIjoxNTk4MzM4MTM4fQ.CXtt4QEyrLHfNAWYdNN59fxysdyDAQS1Ujwq5-gCzcc"
-}
-
-```
 ### Expected Response: List of all users in database
 ```js
 [
     {
         "id": 1,
-        "username": "test12",
+        "username": "test1",
         "password": "password132",
         "email": "test1@gmail.com",
         "firstName": "billy"
@@ -142,31 +145,10 @@ GET /api/users
         "firstName": "bill"
     },
     {
-        "id": 6,
-        "username": "Vanya007",
-        "password": "testpass",
-        "email": "vanya007@gmail.com",
-        "firstName": "Vanya"
-    },
-    {
-        "id": 7,
-        "username": "lexi3",
-        "password": "$2a$08$wiyxgN6GV472AI6XvuFr2edas/ZzxkbAqGB/i4syOe4go8EWkDk8m",
-        "email": "lexi@gmail.com",
-        "firstName": "lexi"
-    },
-    {
-        "id": 8,
-        "username": "new_user",
-        "password": "$2a$08$.rWrs.EBB7pvkIBevAqj5OzOTEJz70DNx46/pQp29UlGy1vNnpj6e",
-        "email": "JaneDoe@gmail.com",
-        "firstName": "Jane"
-    },
-    {
-        "id": 9,
-        "username": "new_use1r",
-        "password": "$2a$08$f/XN4x4P985H10b9uXldSOADtLHjnNS0rr7kH4lMOpSrr.yz4Hkoq",
-        "email": "JaneDoe1@gmail.com",
+        "id": 4,
+        "username": "newb_user",
+        "password": "$2a$08$Sp/WntMm7eAZnDn3tp40tOAp77T8CTMUel8bqZGD3CoJcuSrH.NZ6",
+        "email": "Jane@gmail.com",
         "firstName": "Jane"
     }
 ]
@@ -176,52 +158,38 @@ GET /api/users
 ```js
 GET /api/users/:id
 ```
-### Expected Header: Authorization Token
-```js
-
-{
-    "Authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo5LCJ1c2VybmFtZSI6Im5ld191c2UxciIsImlhdCI6MTU5ODMzMDkzOCwiZXhwIjoxNTk4MzM4MTM4fQ.CXtt4QEyrLHfNAWYdNN59fxysdyDAQS1Ujwq5-gCzcc"
-}
-
-```
 ### Expected Response: User that matches ID
 ```js
 {
-    "id": 1,
-    "username": "test12",
-    "password": "password132",
-    "firstName": "billy",
-    "lastName": "bob",
+    "id": 4,
+    "username": "newb_user",
+    "password": "$2a$08$Sp/WntMm7eAZnDn3tp40tOAp77T8CTMUel8bqZGD3CoJcuSrH.NZ6",
+    "firstName": "Jane",
+    "lastName": "Doe",
     "gender": "female",
     "age": 18,
-    "email": "test1@gmail.com"
+    "email": "Jane@gmail.com"
 }
 ```
-### GET User Posts By ID
+
+### GET User Stories By ID
 ```js
 GET /api/users/:id/stories
 ```
-### Expected Header: Authorization Token
+### Expected Response: Stories that belong to user specified
 ```js
-
 {
-    "Authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0Ijo5LCJ1c2VybmFtZSI6Im5ld191c2UxciIsImlhdCI6MTU5ODMzMDkzOCwiZXhwIjoxNTk4MzM4MTM4fQ.CXtt4QEyrLHfNAWYdNN59fxysdyDAQS1Ujwq5-gCzcc"
+    "id": 1,
+    "storyName": "Chinatown",
+    "photoLink": "https://i.ibb.co/DVN5Lnx/20200322-213304.jpg",
+    "user_id": 1,
+    "stories_id": 1
 }
-
 ```
-### Expected Response: Posts that belong to user specified
-```js
-[
-    {
-        "id": 1,
-        "storyName": "Chinatown",
-        "storyCity": "Bangkok",
-        "storyCountry": "Thailand",
-        "storyDate": 2003,
-        "storyDesc": "Out on a nightly excursion looking for something to eat",
-        "user_id": 1
-    }
-]
+
+### POST new story
+```
+
 ```
 
 ### UPDATE User by ID
@@ -237,14 +205,6 @@ Only need to add field that you want to update
 }
 
 ```
-### Expected Header: Authorization Token
-```js
-
-{
-    "Authorization":"eyJhbGciOiJ4UzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImFsZXhpcyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTgzMjA4NjI0LCJleHAiOjE1ODMyMTIyMjR9.fxBJRx5d6ho4AxqUpFbsXuf6x3X65JqihX65_lzMND4"
-}
-
-```
 ### Expected Response:
 
 ```js
@@ -257,37 +217,20 @@ Only need to add field that you want to update
 ```js
 DELETE /api/users/:id
 ```
-### Expected Header: Authorization Token
-```js
-
-{
-    "Authorization":"eyJhbGciOiJ4UzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImFsZXhpcyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTgzMjA4NjI0LCJleHAiOjE1ODMyMTIyMjR9.fxBJRx5d6ho4AxqUpFbsXuf6x3X65JqihX65_lzMND4"
-}
-
-```
 ### Expected Response:
 
 ```js
 {
-    "success": "deleted",
-    "id": 1
+    "remove": 1
 }
 ```
 
-## Posts Endpoints
-### GET All posts
+## Stories Endpoints
+### GET All stories
 ```js
-GET /api/posts
+GET /api/stories
 ```
-### Expected Header: Authorization Token
-```js
-
-{
-    "Authorization":"eyJhbGciOiJ4UzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImFsZXhpcyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTgzMjA4NjI0LCJleHAiOjE1ODMyMTIyMjR9.fxBJRx5d6ho4AxqUpFbsXuf6x3X65JqihX65_lzMND4"
-}
-
-```
-### Expected Response: List of all posts in database
+### Expected Response: List of all stories in database
 ```js
 [
     {
@@ -320,19 +263,11 @@ GET /api/posts
 ]
 ```
 
-### GET Post By ID
+### GET Story By ID
 ```js
-GET /api/posts/:id
+GET /api/stories/:id
 ```
-### Expected Header: Authorization Token
-```js
-
-{
-    "Authorization":"eyJhbGciOiJ4UzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImFsZXhpcyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTgzMjA4NjI0LCJleHAiOjE1ODMyMTIyMjR9.fxBJRx5d6ho4AxqUpFbsXuf6x3X65JqihX65_lzMND4"
-}
-
-```
-### Expected Response: User that matches ID
+### Expected Response: Story that matches Users ID
 ```js
 {
     "id": 1,
@@ -352,41 +287,21 @@ PUT /api/stories/:id
 ```js
 
     {
-        "storyName": "test", 
-        "storyCity": "test", 
-        "storyCountry": "test", 
-        "storyDesc": "test", 
-        "user_id": 1
+        "storyName": "ChinaTown"
     }
-
-```
-### Expected Header: Authorization Token
-```js
-
-{
-    "Authorization":"eyJhbGciOiJ4UzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImFsZXhpcyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTgzMjA4NjI0LCJleHAiOjE1ODMyMTIyMjR9.fxBJRx5d6ho4AxqUpFbsXuf6x3X65JqihX65_lzMND4"
-}
 
 ```
 ### Expected Response:
 
 ```js
 {
-    UPDATE!!!
+    "story": 1
 }
 ```
 
 ### DELETE User by ID
 ```js
 DELETE /api/stories/:id
-```
-### Expected Header: Authorization Token
-```js
-
-{
-    "Authorization":"eyJhbGciOiJ4UzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjozLCJ1c2VybmFtZSI6ImFsZXhpcyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNTgzMjA4NjI0LCJleHAiOjE1ODMyMTIyMjR9.fxBJRx5d6ho4AxqUpFbsXuf6x3X65JqihX65_lzMND4"
-}
-
 ```
 ### Expected Response:
 
@@ -398,5 +313,3 @@ DELETE /api/stories/:id
 
 
 # Product Vision Document :tada:
-
-## exPat Journal

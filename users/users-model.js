@@ -43,7 +43,8 @@ function findStories(id) {
 function update(changes, id) {
     return db('users')
         .where({ id })
-        .update(changes);
+        .update(changes)
+        .returning('*');
 };
 
 function addStory(story) {
