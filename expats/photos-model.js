@@ -6,7 +6,6 @@ module.exports = {
     add,
     remove,
     update,
-    findPhotos,
 }
 
 function find() {
