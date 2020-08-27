@@ -39,7 +39,6 @@ function findStories(id) {
         .where({stories_id: id})
 };
 
-
 function update(changes, id) {
     return db('users')
         .where({ id })

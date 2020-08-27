@@ -5,7 +5,6 @@ const router = express.Router();
 router.get('/', (req, res) => {
     photos.find()
         .then(photo => {
-            console.log(photos)
             res.json(photo)
         })
         .catch(err => {
@@ -35,12 +34,12 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', (req,res) => {
+router.post('/:id', (req,res) => {
     const photoData = req.body;
     
     photos.add(photoData)
-        .then(photo => {
-            res.status(201).json(photo)
+        .then(photoData => {
+            res.status(201).json(photoData)
         })
         .catch(err => {
             res.status(500).json({

@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.post('/', (req,res) => {
+router.post('/:id', (req,res) => {
     const storyData = req.body;
     
     stories.add(storyData)
