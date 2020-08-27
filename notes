@@ -1,0 +1,13 @@
+Still Need:
+POST
+    stories
+    photos
+Delete
+    stories
+    photos
+
+
+Concerns
+    GET /api/users/3/stories - not returning all stories related to user id
+    GET /api/stories/4 - not returning the obj BUT
+        PUT /api/stories/4 - lets me update the obj

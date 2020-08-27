@@ -188,8 +188,29 @@ GET /api/users/:id/stories
 ```
 
 ### POST new story
+```js
+POST /api/stories
 ```
-
+### Expected Body:
+```js
+{
+    "storyName": "test",
+    "storyCity": "teset",
+    "storyCountry": "test",
+    "storyDesc": "test",
+    "user_id": 3
+}
+```
+### Expected Response
+```js
+{
+    "storyName": "test",
+    "storyCity": "teset",
+    "storyCountry": "test",
+    "storyDesc": "test",
+    "storyDate": "2020-08-27 02:27:49",
+    "user_id": 3
+}
 ```
 
 ### UPDATE User by ID

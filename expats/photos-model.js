@@ -2,44 +2,42 @@ const db = require('../database/db-config.js');
 
 module.exports = {
     find,
-    findStoriesById,
+    findById,
     add,
     remove,
     update,
-    findStories,
+    findPhotos,
 }
 
 function find() {
-    return db('stories')
+    return db('photos')
         .select('*');
 };
 
-function findStoriesById(id) {
-    return db('stories')
-    .select('*')
-    .where({id})
-    .first();
+function findById(id) {
+    return db('photos')
+        .where({ id });
 };
 
-function add(story) {
-    return db('stories')
-        .insert(story)
-        .returning(story);
+function add(photo) {
+    return db('photos')
+        .insert(photo)
+        .returning(photo);
 };
 
 function remove(id) {
-    return db('stories')
+    return db('photos')
         .where({ id })
         .del();
 };
 
 function update(changes, id) {
-    return db('stories')
+    return db('photos')
         .where({ id })
         .update(changes);
 };
 
-function findStories(id) {
+function findPhotos(id) {
     return db('stories as s')
         .join('photos as p', 'p.id','p.stories_id')
         .select('s.id','s.storyName', 'p.photoLink', 's.user_id', 'p.stories_id')
