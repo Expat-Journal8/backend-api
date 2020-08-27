@@ -23,8 +23,7 @@ function findStoriesById(id) {
 
 function add(story) {
     return db('stories')
-        .insert(story)
-        .returning(story);
+        .insert(story);
 };
 
 function remove(id) {
