@@ -23,8 +23,7 @@ function findStoriesById(id) {
 
 function add(story) {
     return db('stories')
-        .insert(story)
-        .select('storyName', 'storyCity', 'storyCountry', 'storyDesc', 'user_id');
+        .insert(story);
 };
 
 function remove(id) {
