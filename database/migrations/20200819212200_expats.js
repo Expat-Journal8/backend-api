@@ -31,7 +31,7 @@ exports.up = function(knex) {
                 .notNullable();
             tbl.timestamp('storyDate')
                 .defaultTo(knex.fn.now());
-            tbl.string('storiesPhoto')
+            tbl.string('storyPhoto')
                 .notNullable();
             tbl.text('storyDesc')
                 .notNullable();

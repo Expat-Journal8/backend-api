@@ -19,8 +19,8 @@ router.post('/', (req,res) => {
     const storyData = req.body;
     
     stories.add(storyData)
-        .then(story => {
-            res.status(201).json(story)
+        .then(storyData => {
+            res.status(201).json(storyData)
         })
         .catch(err => {
             res.status(500).json({
