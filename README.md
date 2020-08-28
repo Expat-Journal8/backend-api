@@ -319,6 +319,7 @@ Expected Response
         "storyCountry": "test",
         "storyDesc": "test",
         "storyDate": "2020-08-27 02:27:49",
+        "storyPhoto": "test link",
         "user_id": 3
     }
 ```
