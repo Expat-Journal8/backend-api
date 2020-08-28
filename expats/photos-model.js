@@ -34,5 +34,6 @@ function remove(id) {
 function update(changes, id) {
     return db('photos')
         .where({ id })
-        .update(changes);
+        .update(changes)
+        .returning('*');
 };

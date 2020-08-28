@@ -15,6 +15,21 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+
+    stories.findStories(id)
+        .then(stories => {
+            const story = stories[0];
+            res.json(story);
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: 'Problem with db', error:err
+            });
+        });
+});
+
 router.post('/', (req,res) => {
     const storyData = req.body;
     
@@ -69,22 +84,6 @@ router.put('/:id', (req, res) => {
             });
         });
 });
-
-router.get('/:id', (req, res) => {
-    const { id } = req.params;
-
-    stories.findStories(id)
-        .then(stories => {
-            const story = stories[0];
-            res.json(story);
-        })
-        .catch(err => {
-            res.status(500).json({
-                message: 'Problem with db', error:err
-            });
-        });
-});
-
 
 
 module.exports = router;

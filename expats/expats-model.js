@@ -37,7 +37,8 @@ function remove(id) {
 function update(changes, id) {
     return db('stories')
         .where({ id })
-        .update(changes);
+        .update(changes)
+        .returning('*');
 };
 
 function findStories(id) {
