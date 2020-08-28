@@ -306,6 +306,7 @@ Expected Body:
         "storyCity": "test",
         "storyCountry": "test",
         "storyDesc": "test",
+        "storyPhoto": "test link"
         "user_id": 3
     }
 
