@@ -20,7 +20,7 @@ router.post('/', (req,res) => {
     
     stories.add(storyData)
         .then(story => {
-            res.status(201).json('storyName', 'storyCity', 'storyCountry', 'storyDesc', 'storyPhoto', 'user_id')
+            res.status(201).json(story)
         })
         .catch(err => {
             res.status(500).json({
