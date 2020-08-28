@@ -31,6 +31,8 @@ exports.up = function(knex) {
                 .notNullable();
             tbl.timestamp('storyDate')
                 .defaultTo(knex.fn.now());
+            tbl.string('storiesPhoto')
+                .notNullable();
             tbl.text('storyDesc')
                 .notNullable();
             tbl.integer('user_id')

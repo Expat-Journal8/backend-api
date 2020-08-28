@@ -205,7 +205,7 @@ POST /api/stories
 ```js
 {
     "storyName": "test",
-    "storyCity": "teset",
+    "storyCity": "test",
     "storyCountry": "test",
     "storyDesc": "test",
     "storyDate": "2020-08-27 02:27:49",
