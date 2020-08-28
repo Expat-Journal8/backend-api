@@ -21,9 +21,9 @@ function findStoriesById(id) {
     .first();
 };
 
-function add(story) {
+function add(storyData) {
     return db('stories')
-        .insert(story);
+        .insert(storyData);
 };
 
 function remove(id) {
