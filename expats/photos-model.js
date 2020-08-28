@@ -18,9 +18,11 @@ function findById(id) {
         .where({ id });
 };
 
-function add(photo) {
-    return db('photos')
-        .insert(photo);
+async function add(photoData) {
+    const [id] = await db('photos')
+        .insert(photoData, 'id');
+    const result = findById(id)
+    return result;
 };
 
 function remove(id) {

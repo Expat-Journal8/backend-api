@@ -21,9 +21,11 @@ function findStoriesById(id) {
     .first();
 };
 
-function add(storyData) {
-    return db('stories')
+async function add(storyData) {
+    const [id] = await db('stories')
         .insert(storyData, 'id');
+    const result = findStoriesById(id)
+    return result;
 };
 
 function remove(id) {

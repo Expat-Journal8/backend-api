@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/:id', (req,res) => {
+router.post('/', (req,res) => {
     const photoData = req.body;
     
     photos.add(photoData)
