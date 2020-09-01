@@ -53,7 +53,7 @@ function update(changes, id) {
 function findPosts(id) {
     return db('users as u')
         .join('stories as s', 's.id','s.user_id' )
-        .select('storyName', 's.storyPhoto', 's.user_id', 'u.userName', 'u.email')
+        .select('storyName', 's.storyPhoto', 's.user_id', 'u.username', 'u.email')
         .where({user_id:id});
 };
 

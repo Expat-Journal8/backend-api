@@ -23,7 +23,9 @@ module.exports = {
 
   testing: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
+    connection: {
+      filename: './database/test.db3'
+    },
     pool: {
       min: 2,
       max: 10

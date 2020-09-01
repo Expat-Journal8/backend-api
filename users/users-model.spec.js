@@ -24,4 +24,3 @@ describe('users model', () => {
             expect(users[3].username).toBe('Vanya007');
         });
     });
-
