@@ -242,7 +242,7 @@ Expected Response:
 
 ### POST new story
 ```js
-POST /api/stories
+POST /api/users/:id/stories
 
 Expected Body:
 
