@@ -6,7 +6,9 @@ module.exports = {
     add,
     remove,
     update,
-    findStories,
+    findPosts,
+    addStory,
+    // findStories
 }
 
 function find() {
@@ -15,10 +17,10 @@ function find() {
 };
 
 function findStoriesById(id) {
-    return db('stories')
-    .select('*')
-    .where({id})
-    .first();
+    return db('stories as s')
+        .join('photos as p', 'p.id','p.stories_id')
+        .select('*')
+        .where({user_id: id})
 };
 
 async function add(storyData) {
@@ -41,9 +43,29 @@ function update(changes, id) {
         .returning('*');
 };
 
-function findStories(id) {
-    return db('stories as s')
-        .join('photos as p', 'p.id','p.stories_id')
-        .select('s.id','s.storyName', 'p.photoLink', 's.user_id', 'p.stories_id')
-        .where({user_id: id})
+// function findStories(id) {
+//     return db('stories as s')
+//         .join('photos as p', 'p.id','p.stories_id')
+//         .select('*')
+//         .where({user_id: id})
+// };
+
+function findPosts(id) {
+    return db('users as u')
+        .join('stories as s', 's.id','s.user_id' )
+        .select('storyName', 's.storyPhoto', 's.user_id', 'u.userName', 'u.email')
+        .where({user_id:id});
+};
+
+// function findPosts(id) {
+//     return db('users as u')
+//         .join('stories as s', 's.id', 's.storyName', 's.storyPhoto')
+//         .select('*')
+//         .where({ id});
+// }
+
+function addStory(story) {
+    return db('stories')
+        .insert(story)
+        .returning(story);
 };

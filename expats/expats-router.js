@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     stories.find()
         .then(story => {
-            console.log(stories)
+            // console.log(stories)
             res.json(story)
         })
         .catch(err => {
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const { id } = req.params;
 
-    stories.findStories(id)
+    stories.findStoriesById(id)
         .then(stories => {
             const story = stories[0];
             res.json(story);
@@ -43,6 +43,30 @@ router.post('/', (req,res) => {
             });
         });
 });
+
+// router.post('/', (req, res) => {
+//     const { id } = req.params;
+//     const postData = req.body;
+
+//     stories.findStoriesById(id)
+//         .then(story => {
+//             if (story) {
+//                 stories.add(postData,id)
+//                 .then(storyData => {
+//                     res.status(201).json(storyData)
+//                 })
+//             } else {
+//                 res.status(404).json({
+//                     message: 'Could not find story with that id'
+//                 });
+//             }
+//         })
+//          .catch(err => {
+//             res.status(500).json({
+//                 message: 'Failed to create new story'
+//             });
+//         });
+// });
 
 router.delete('/:id', (req, res) => {
     const { id } = req.params;

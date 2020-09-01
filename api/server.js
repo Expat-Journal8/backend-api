@@ -16,7 +16,7 @@ server.use(cors());
 
 server.use('/api/auth', authRouter);
 server.use('/api/users', auth, usersRouter);
-server.use('/api/stories', auth, storiesRouter);
+server.use('/api/stories',auth, storiesRouter);
 server.use('/api/photos', auth, photosRouter);
 
 

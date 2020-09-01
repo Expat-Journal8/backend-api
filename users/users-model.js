@@ -5,7 +5,7 @@ module.exports = {
     find,
     findBy,
     findById,
-    findStories,
+    // findStories,
     update,
     addStory,
     remove,
@@ -32,12 +32,12 @@ function findById(id) {
         .where({ id });
 };
 
-function findStories(id) {
-    return db('stories as s')
-        .join('photos as p', 'p.id','p.stories_id')
-        .select('s.id','s.storyName', 'p.photoLink', 's.storyDate', 's.user_id', 'p.stories_id')
-        .where({stories_id: id})
-};
+// function findStories(id) {
+//     return db('stories as s')
+//         .join('photos as p', 'p.id','p.stories_id')
+//         .select('s.id','s.storyName', 'p.photoLink', 's.storyDate', 's.user_id', 'p.stories_id')
+//         .where({user_id: id})
+// };
 
 function update(changes, id) {
     return db('users')

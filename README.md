@@ -55,6 +55,7 @@ Users
 | GET    | /api/users/:id         | returns users specified by :id                   |
 | PUT    | /api/users/:id         | updates user specified by :id                    |
 | GET    | /api/users/:id/stories | returns stories created by user specified by :id |
+| POST   | /api/:id/stories       | creates & returns new story                      |
 | DELETE | /api/users/:id         | deletes user specified by :id                    |
 
 
@@ -63,7 +64,6 @@ Stories
 |--------|------------------------|--------------------------------------------------|
 | GET    | /api/stories           | returns array of stories                         |
 | GET    | /api/stories/:id       | returns stories specified by :id                 |
-| POST   | /api/stories           | creates & returns new story                      |
 | PUT    | /api/stories/:id       | updates stories specified by :id                 |
 | DELETE | /api/stories/:id       | deletes stories specified by :id                 |
 
@@ -240,6 +240,35 @@ Expected Response:
     }
 ```
 
+### POST new story
+```js
+POST /api/stories
+
+Expected Body:
+
+    {
+        "storyName": "test",
+        "storyCity": "test",
+        "storyCountry": "test",
+        "storyDesc": "test",
+        "storyPhoto": "test link"
+        "user_id": 3
+    }
+
+Expected Response:  creates & returns new story
+Expected Response
+
+    {
+        "storyName": "test",
+        "storyCity": "test",
+        "storyCountry": "test",
+        "storyDesc": "test",
+        "storyDate": "2020-08-27 02:27:49",
+        "storyPhoto": "test link",
+        "user_id": 3
+    }
+```
+
 ## Stories Endpoints
 ### Get All Stories
 ```js
@@ -292,35 +321,6 @@ Expected Response:
         "photoLink": "https://i.ibb.co/DVN5Lnx/20200322-213304.jpg",
         "user_id": 1,
         "stories_id": 1
-    }
-```
-
-### POST new story
-```js
-POST /api/stories
-
-Expected Body:
-
-    {
-        "storyName": "test",
-        "storyCity": "test",
-        "storyCountry": "test",
-        "storyDesc": "test",
-        "storyPhoto": "test link"
-        "user_id": 3
-    }
-
-Expected Response:  creates & returns new story
-Expected Response
-
-    {
-        "storyName": "test",
-        "storyCity": "test",
-        "storyCountry": "test",
-        "storyDesc": "test",
-        "storyDate": "2020-08-27 02:27:49",
-        "storyPhoto": "test link",
-        "user_id": 3
     }
 ```
 

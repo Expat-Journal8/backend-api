@@ -61,13 +61,16 @@ router.get('/:id/stories', (req, res) => {
     users.findById(id)
     .then(user =>{
         if(user){
-            stories.findStories(id)
+            console.log(user)
+            stories.findPosts(id)
             .then(stories =>{
                 const story = stories[0];
+                console.log(story.user_id)
                 res.status(200).json(story)
             })
             .catch(err =>{
-                res.status(401).json({message: `Failed To Find stories For: ${user.username}`})
+                console.log(err)
+                res.status(401).json({message: `Failed To Find stories For: ${user.id}`})
             })
         } else{
             res.status(401).json({message: `Failed To Find User With ID: ${req.params.id} `})
@@ -94,6 +97,30 @@ router.delete('/:id', (req, res) => {
         .catch(err => {
             res.status(500).json({
                 message: 'Failed to delete user'
+            });
+        });
+});
+
+router.post('/:id/stories', (req, res) => {
+    const storyData = req.body;
+    const {id} = req.params;
+
+    users.findById(id)
+        .then(user => {
+            if(user) {
+                stories.addStory(storyData, id)
+                    .then(story => {
+                        res.status(201).json(story);
+                    })
+            } else {
+                res.status(404).json({
+                    message: 'Could not find user with given ID'
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: 'Failed to add new story'
             });
         });
 });
